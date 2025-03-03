@@ -1,60 +1,65 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void Merge(vector<int> &arr, int low, int mid, int high)
+void Merge(int arr[], int low, int mid, int high)
 {
-    vector<int> temp;
-    int l = low;
-    int r = mid + 1;
-    while (l <= mid and r <= high)
+    int temp[high - low + 1], l = low, r = mid + 1, k = 0;
+
+    while (l <= mid && r <= high)
     {
         if (arr[l] <= arr[r])
         {
-            temp.push_back(arr[l++]);
+            temp[k++] = arr[l++];
         }
+
         else
         {
-            temp.push_back(arr[r++]);
+            temp[k++] = arr[r++];
         }
     }
     while (l <= mid)
     {
-        temp.push_back(arr[l++]);
+        temp[k++] = arr[l++];
     }
+
     while (r <= high)
     {
-        temp.push_back(arr[r++]);
+        temp[k++] = arr[r++];
     }
-    for (int i = low; i <= high; i += 1)
+
+    for (int i = 0; i < k; i++)
     {
-        arr[i] = temp[i - low];
+        arr[low + i] = temp[i];
     }
 }
-void MergeSort(vector<int> &arr, int low, int high)
+
+void MergeSort(int arr[], int low, int high)
 {
     if (low >= high)
     {
         return;
     }
+
     int mid = (low + high) / 2;
     MergeSort(arr, low, mid);
     MergeSort(arr, mid + 1, high);
     Merge(arr, low, mid, high);
 }
+
 int main()
 {
-
     int n;
     cin >> n;
-    vector<int> a(n);
-    for (int i = 0; i < n; i += 1)
+    int a[n];
+    for (int i = 0; i < n; i++)
     {
         cin >> a[i];
     }
+
     MergeSort(a, 0, n - 1);
 
-    for (auto c : a)
+    for (int i = 0; i < n; i++)
     {
-        cout << c << " ";
+        cout << a[i] << " ";
     }
 }
