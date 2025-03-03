@@ -1,14 +1,11 @@
-
-
 #include <bits/stdc++.h>
 using namespace std;
-#define ll long long
-#define str string
-void merge(vector<ll> &arr, ll low, ll mid, ll high)
+
+void Merge(vector<int> &arr, int low, int mid, int high)
 {
     vector<int> temp;
-    ll l = low;
-    ll r = mid + 1;
+    int l = low;
+    int r = mid + 1;
     while (l <= mid and r <= high)
     {
         if (arr[l] <= arr[r])
@@ -33,42 +30,31 @@ void merge(vector<ll> &arr, ll low, ll mid, ll high)
         arr[i] = temp[i - low];
     }
 }
-void mergesort(vector<ll> &arr, ll low, ll high)
+void MergeSort(vector<int> &arr, int low, int high)
 {
     if (low >= high)
     {
         return;
     }
-    ll mid = (low + high) / 2;
-    mergesort(arr, low, mid);
-    mergesort(arr, mid + 1, high);
-    merge(arr, low, mid, high);
+    int mid = (low + high) / 2;
+    MergeSort(arr, low, mid);
+    MergeSort(arr, mid + 1, high);
+    Merge(arr, low, mid, high);
 }
-void solve()
+int main()
 {
-    // By Farhadul Islam
-    // Only Brute Force Bhai
 
-    ll n;
+    int n;
     cin >> n;
-    vector<ll> a(n);
-    for (ll i = 0; i < n; i += 1)
+    vector<int> a(n);
+    for (int i = 0; i < n; i += 1)
     {
         cin >> a[i];
     }
-    vector<ll> ans;
-    mergesort(a, 0, n - 1);
-    for (auto x : a)
+    MergeSort(a, 0, n - 1);
+
+    for (auto c : a)
     {
-        cout << x << " ";
-    }
-}
-int32_t main()
-{
-    int t = 1;
-    // cin >> t;
-    while (t--)
-    {
-        solve();
+        cout << c << " ";
     }
 }
