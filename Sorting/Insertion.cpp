@@ -1,45 +1,30 @@
-
-
 #include <bits/stdc++.h>
 using namespace std;
-#define ll long long
-#define str string
-void solve()
+
+int main()
 {
-    // By Farhadul Islam
-    // Only Brute Force Bhai
-    /*Insertion sort*/
-    ll n;
+
+    int n;
     cin >> n;
-    vector<ll> a(n);
-    for (ll i = 0; i < n; i += 1)
+    vector<int> a(n);
+    for (int i = 0; i < n; i += 1)
     {
         cin >> a[i];
     }
-    for (ll i = 1; i < n; i += 1)
+    for (int i = 1; i < n; i += 1)
     {
-        ll x = a[i];
-        ll j = i - 1;
-        while (j >= 0 and a[j] > x)
+        int key = a[i];
+        int j = i - 1;
+        while (j >= 0 and a[j] > key)
         {
             a[j + 1] = a[j];
             j--;
         }
-        a[j + 1] = x;
+        a[j + 1] = key;
     }
-    for (ll i = 0; i < n; i += 1)
+
+    for (auto c: a)
     {
-        cout << a[i] << " ";
-    }
-    cout << "\n";
-    /*End of Insertion sort*/
-}
-int32_t main()
-{
-    int t = 1;
-    // cin >> t;
-    while (t--)
-    {
-        solve();
+        cout << c << " ";
     }
 }
