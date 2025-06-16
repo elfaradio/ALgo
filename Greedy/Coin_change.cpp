@@ -33,31 +33,32 @@ void solve()
     // sort(v.rbegin(), v.rend());
 
     // Insertion sort// O(n^2)
-    for (int i = 0; i < m; i += 1)
+    for (int i = 1; i < m; i += 1)
     {
-        ll j = i - 1;
         ll x = v[i];
-        while (j <= 0 and v[j] > v[i])
+        int j = i - 1;
+        while (j >= 0 && v[j] > x)
         {
-            swap(v[j], v[i]);
+            v[j + 1] = v[j]; 
             j -= 1;
         }
-        v[j + 1] = x;
+        v[j + 1] = x; 
     }
-    // Selection sort O(n^2)
-    for (int i = 0; i < m - 1; i += 1)
-    {
 
-        int mn = i;
-        for (int j = i + 1; j < m; j += 1)
-        {
-            if (v[j] < v[mn])
-            {
-                mn = j;
-            }
-        }
-        swap(v[i], v[mn]);
-    }
+    // Selection sort O(n^2)
+    // for (int i = 0; i < m - 1; i += 1)
+    // {
+
+    //     int mn = i;
+    //     for (int j = i + 1; j < m; j += 1)
+    //     {
+    //         if (v[j] < v[mn])
+    //         {
+    //             mn = j;
+    //         }
+    //     }
+    //     swap(v[i], v[mn]);
+    // }
 
     // Bubble sort O(n^2)
     // for (int i = 0; i < m - 1; i += 1)
@@ -87,7 +88,7 @@ void solve()
     // recursive approach
     // ans = f(v, v.size(), n);
 
-    cout << ans << "\n";
+    // cout << ans << "\n";
 }
 int32_t main()
 {
