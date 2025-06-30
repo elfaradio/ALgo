@@ -19,6 +19,8 @@ struct Sort
 {
     bool operator()(F *l, F *r)
     {
+        if (l->cnt == r->cnt)
+            return l->c > r->c;
         return l->cnt > r->cnt;
     }
 };
